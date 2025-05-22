@@ -41,7 +41,7 @@ resource "aws_db_instance" "main" {
   engine                  = "mysql"
   engine_version          = "8.0"
   instance_class          = "db.t3.micro"
-  db_name                 = "appdb"
+  db_name                 = "alloy-example-db-suved-adkar"
   username                = var.db_username # Pulled from the secret.tfvars file or can be specific when the terraform apply command is run
   password                = var.db_password # Pulled from the secret.tfvars file or can be specific when the terraform apply command is run
   skip_final_snapshot     = true
@@ -50,13 +50,13 @@ resource "aws_db_instance" "main" {
 }
 
 resource "aws_db_subnet_group" "main" {
-  name       = "main-db-subnet-group"
+  name       = "alloy-private-subnet-group" #This is a placeholder name, that should be updated to reflect the Alloy naming convention
   subnet_ids = var.subnets
 }
 
 # Security Groups
 resource "aws_security_group" "rds" {
-  name   = "rds-sg"
+  name   = "alloy-rds-sg"
   vpc_id = var.vpc_id
 
   ingress {
